@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "allowJs": true,
+    "rootDir": ".",
+    "outDir": "./lib/",
+    "lib": ["es5", "dom"],
+    "types": ["@types/node"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "files": ["./node_modules/@akashic/akashic-engine/lib/main.d.ts"]
+}
