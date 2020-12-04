@@ -2,6 +2,6 @@ import {YogaNode} from 'yoga-layout-prebuilt';
 
 export interface Component {
   node: YogaNode;
-  build(): g.E;
-  buildEntity(parent?: g.E): g.E;
+  build(scene: g.Scene): g.E;
+  buildEntity(scene: g.Scene, parent?: g.E): g.E;
 }

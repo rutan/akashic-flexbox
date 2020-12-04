@@ -14,7 +14,7 @@ import {View} from '@rutan/akashic-flexbox';
 export function main() {
   const scene = new g.Scene({ game: g.game });
   scene.loaded.add(() => {
-    const root = View.create({ scene })
+    const root = View.create()
       .width(g.game.width)
       .height(g.game.height)
       .direction('row')
@@ -23,7 +23,6 @@ export function main() {
 
     root.child(
       View.create({
-          scene,
           entityClass: g.FilledRect,
           entityParameterObject: { cssColor: '#f00' }
        })
@@ -33,7 +32,6 @@ export function main() {
 
     root.child(
       View.create({
-          scene,
           entityClass: g.FilledRect,
           entityParameterObject: { cssColor: '#0f0' }
        })
@@ -42,7 +40,7 @@ export function main() {
          .marginLeft(50)
     );
 
-    scene.append(root.build());
+    scene.append(root.build(scene));
   });
   g.game.pushScene(scene);
 }

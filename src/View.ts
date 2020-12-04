@@ -13,7 +13,6 @@ import {
 type Class<T> = new (...args: any[]) => T;
 
 export interface ViewParameterObject<T extends g.E> {
-  scene: g.Scene;
   entityClass?: Class<T>;
   entityParameterObject?: Partial<T>;
 }
@@ -21,11 +20,10 @@ export interface ViewParameterObject<T extends g.E> {
 type Percent = `${number}%`;
 
 export class View<T extends g.E> implements Component {
-  static create<T extends g.E>(param: ViewParameterObject<T>) {
+  static create<T extends g.E>(param: ViewParameterObject<T> = {}) {
     return new View<T>(param);
   }
 
-  private readonly _scene: g.Scene;
   private readonly _entityClass: Class<g.E>;
   private readonly _entityParameterObject: any;
   private readonly _children: Component[] = [];
@@ -34,13 +32,8 @@ export class View<T extends g.E> implements Component {
   private _entity?: g.E;
 
   constructor(params: ViewParameterObject<T>) {
-    this._scene = params.scene;
     this._entityClass = params.entityClass || g.E;
     this._entityParameterObject = params.entityParameterObject || {};
-  }
-
-  get scene() {
-    return this._scene;
   }
 
   get children() {
@@ -224,23 +217,23 @@ export class View<T extends g.E> implements Component {
     return this._node.getFlexGrow();
   }
 
-  build() {
+  build(scene: g.Scene) {
     this._node.calculateLayout();
-    return this.buildEntity();
+    return this.buildEntity(scene);
   }
 
-  buildEntity(parent?: g.E) {
-    const entity = new this._entityClass(this.buildEntityParameterObject());
+  buildEntity(scene: g.Scene, parent?: g.E) {
+    const entity = new this._entityClass(this.buildEntityParameterObject(scene));
     if (parent) parent.append(entity);
-    this._children.forEach((c) => c.buildEntity(entity));
+    this._children.forEach((c) => c.buildEntity(scene, entity));
     this._entity = entity;
     return entity;
   }
 
-  buildEntityParameterObject() {
+  buildEntityParameterObject(scene: g.Scene) {
     const layout = this._node.getComputedLayout();
     return Object.assign({}, this._entityParameterObject, {
-      scene: this._scene,
+      scene,
       x: layout.left,
       y: layout.top,
       width: layout.width,

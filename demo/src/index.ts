@@ -3,7 +3,7 @@ import { View } from '../../esm/View';
 export function main(_params: any) {
   const scene = new g.Scene({ game: g.game });
   scene.loaded.add(() => {
-    const root = View.create({ scene })
+    const root = View.create()
       .width(g.game.width)
       .height(g.game.height)
       .direction('column')
@@ -11,7 +11,6 @@ export function main(_params: any) {
     // 背景
     root.child(
       View.create({
-        scene,
         entityClass: g.FilledRect,
         entityParameterObject: {
           cssColor: '#fff'
@@ -25,7 +24,6 @@ export function main(_params: any) {
     // 設問
     root.child(
       View.create({
-        scene,
         entityClass: g.FilledRect,
         entityParameterObject: {
           cssColor: '#999'
@@ -39,7 +37,7 @@ export function main(_params: any) {
     );
 
     // 選択肢エリア
-    const choices = View.create({ scene })
+    const choices = View.create()
       .direction('row')
       .width('100%')
       .flexGrow(1)
@@ -59,7 +57,6 @@ export function main(_params: any) {
     ].forEach((cssColor) => {
       choices.child(
         View.create({
-          scene,
           entityClass: g.FilledRect,
           entityParameterObject: {
             cssColor
@@ -75,7 +72,6 @@ export function main(_params: any) {
     // （本当はそんなものないけど……）
     root.child(
       View.create({
-        scene,
         entityClass: g.FilledRect,
         entityParameterObject: {
           cssColor: '#ccf'
@@ -88,7 +84,7 @@ export function main(_params: any) {
         .height(56)
     )
 
-    scene.append(root.build());
+    scene.append(root.build(scene));
   });
   g.game.pushScene(scene);
 }
