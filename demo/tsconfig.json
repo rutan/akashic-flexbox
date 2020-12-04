@@ -5,15 +5,25 @@
     "allowJs": true,
     "rootDir": ".",
     "outDir": "./lib/",
-    "lib": ["es5", "dom"],
-    "types": ["@types/node"],
+    "lib": [
+      "es5",
+      "dom"
+    ],
+    "types": [
+      "@types/node"
+    ],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true,
     "noImplicitReturns": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowUmdGlobalAccess": true
   },
-  "include": ["src/**/*"],
-  "files": ["./node_modules/@akashic/akashic-engine/lib/main.d.ts"]
+  "include": [
+    "src/**/*"
+  ],
+  "files": [
+    "./node_modules/@akashic/akashic-engine/index.runtime.d.ts"
+  ]
 }

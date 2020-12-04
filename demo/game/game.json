@@ -1,6 +1,6 @@
 {
-	"width": 640,
-	"height": 360,
+	"width": 1280,
+	"height": 720,
 	"fps": 30,
 	"main": "./script/main.js",
 	"assets": {
@@ -13,10 +13,40 @@
 			"type": "script",
 			"path": "script/bundle.js",
 			"global": true
+		},
+		"back_button": {
+			"type": "image",
+			"width": 172,
+			"height": 96,
+			"path": "image/back_button.png"
+		},
+		"circle_button": {
+			"type": "image",
+			"width": 110,
+			"height": 110,
+			"path": "image/circle_button.png"
+		},
+		"main_button": {
+			"type": "image",
+			"width": 188,
+			"height": 188,
+			"path": "image/main_button.png"
+		},
+		"menu_bar": {
+			"type": "image",
+			"width": 1280,
+			"height": 86,
+			"path": "image/menu_bar.png"
+		},
+		"scene_back": {
+			"type": "image",
+			"width": 1280,
+			"height": 720,
+			"path": "image/scene_back.jpg"
 		}
 	},
 	"moduleMainScripts": {},
 	"environment": {
-		"sandbox-runtime": "2"
+		"sandbox-runtime": "3"
 	}
 }
